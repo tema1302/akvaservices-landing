@@ -1,0 +1,31 @@
+$baseColor: #DEC9A5;
+$bgColor: #36424C;
+
+@mixin black-wrapper {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+@mixin lightem-black-gradient {
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+@mixin placeholder($color: #808c99) {
+  &::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease; color: $color}
+  &::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease; color: $color}
+  &:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease; color: $color}
+  &:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease; color: $color}
+  &:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease; color: $color}
+  &:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease; color: $color}
+  &:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease; color: $color}
+  &:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease; color: $color}
+}
