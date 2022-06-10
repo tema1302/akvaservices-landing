@@ -4,6 +4,7 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  dev: process.env.NODE_ENV !== 'production',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -21,11 +22,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/theme/_vars.scss',
-    '@/theme/_fonts.css',
-    '@/theme/index.scss',
-  ],
+  css: ['@/theme/_vars.scss', '@/theme/_fonts.css', '@/theme/index.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -45,7 +42,27 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources',
+    [
+      '@nuxtjs/i18n',
+      {
+        locales: [{ code: 'ru', iso: 'ru-RU', file: 'ru.js', name: 'Русский' }],
+        lazy: true,
+        langDir: 'lang/',
+        defaultLocale: 'ru',
+        detectBrowserLanguage: {
+          alwaysRedirect: false,
+          fallbackLocale: 'ru',
+          redirectOn: 'root',
+          useCookie: true,
+          cookieCrossOrigin: false,
+          cookieDomain: null,
+          cookieKey: 'i18n_redirected',
+          cookieSecure: false,
+        },
+      },
+    ],
   ],
 
   styleResources: {
@@ -56,6 +73,13 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+    proxy: true,
+  },
+  proxy: {
+    '/sendEmail/': {
+      target: 'http://akvacity.ru/dev',
+      changeOrigin: false,
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -63,6 +87,6 @@ export default {
     extractCSS: process.env.NODE_ENV === 'production',
   },
   router: {
-    base: process.env.NODE_ENV === 'production' ? '/service/' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/service-landing/' : '/',
   },
 }
