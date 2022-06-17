@@ -1,7 +1,8 @@
 <template lang="pug">
   .landing
     section.landing--main.min-h-screen.relative.flex.items-center.justify-center.flex-col.bg-center.bg-no-repeat.bg-cover
-      .relative.z-10.font-bold(class="text-2xl md:text-4xl lg:text-6xl mb-6 md:mb-10", v-html="$t('title')")
+      img.relative.z-10.mb-6(class="w-16 md:w-24 lg:w-36", src="@/static/images/logo.png")
+      .relative.z-10.font-bold(class="text-2xl md:text-4xl lg:text-7xl mb-6 md:mb-10", v-html="$t('title')")
       .relative.z-10.text-center(class="text-base md:text-xl ", v-html="$t('subtopic')")
       .absolute.down-click.z-10.bottom-10.animate-bounce.cursor-pointer
         <svg @click="smoothScrollToServices" class="t-cover__arrow-svg" style="fill:#dcc89a;" x="0px" y="0px" width="38.417px" height="18.592px" viewBox="0 0 38.417 18.592"><g><path d="M19.208,18.592c-0.241,0-0.483-0.087-0.673-0.261L0.327,1.74c-0.408-0.372-0.438-1.004-0.066-1.413c0.372-0.409,1.004-0.439,1.413-0.066L19.208,16.24L36.743,0.261c0.411-0.372,1.042-0.342,1.413,0.066c0.372,0.408,0.343,1.041-0.065,1.413L19.881,18.332C19.691,18.505,19.449,18.592,19.208,18.592z"></path></g></svg>
@@ -35,12 +36,12 @@
             .text-xl {{ $t('sec3-email-title') }}&nbsp;
               a(:href="`mailto:${$t('sec3-email')}`", v-html="$t('sec3-email')")
           .soc-network.flex
-            a(href="", target="_blank")
-              img.mr-3(src="@/static/images/twitter.svg")
-            a(href="", target="_blank")
+            //- a(href="", target="_blank")
+            //-   img.mr-3(src="@/static/images/twitter.svg")
+            a(href="https://vk.com/vkakvacity", target="_blank")
               img.mr-3(src="@/static/images/vk.svg")
-            a(href="", target="_blank")
-              img(src="@/static/images/telegram.svg")
+            //- a(href="", target="_blank")
+            //-   img(src="@/static/images/telegram.svg")
 </template>
 
 <script>
@@ -60,10 +61,7 @@ export default {
     let localeLink = ''
     if (process.env.NODE_ENV === 'production') {
       localeLink =
-        '/service-landing/js_langs/' +
-        this.$i18n.locale +
-        '.json?v=' +
-        Math.random()
+        '/service/js_langs/' + this.$i18n.locale + '.json?v=' + Math.random()
     } else {
       localeLink = '/js_langs/' + this.$i18n.locale + '.json?v=' + Math.random()
     }
@@ -87,7 +85,10 @@ export default {
         try {
           const response = await this.$axios.post('/sendEmail/', form)
           console.log(response)
-          if (response.data === 'ok') alert('Всё ок, имейл отправлен')
+          if (response.data === 'ok')
+            alert(
+              'Спасибо, что обратили в компанию Аквасити Сервис. Наш менеджер свяжется с Вами в ближайшее время'
+            )
         } catch (e) {
           console.log(e.response)
         }

@@ -87,6 +87,6 @@ export default {
     extractCSS: process.env.NODE_ENV === 'production',
   },
   router: {
-    base: process.env.NODE_ENV === 'production' ? '/service-landing/' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/service/' : '/',
   },
 }
