@@ -8,9 +8,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'akvaservices-landing',
+    title: 'Аквасити Сервис',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ru',
     },
     meta: [
       { charset: 'utf-8' },
@@ -76,8 +76,8 @@ export default {
     proxy: true,
   },
   proxy: {
-    '/sendEmail/': {
-      target: 'http://akvacity.ru/dev',
+    '/dev/sendEmail/': {
+      target: 'http://akvacity.ru',
       changeOrigin: false,
     },
   },
